@@ -6,35 +6,12 @@ const Habit = require('../modelo/Habit');
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.post("/habits", async (req, res) => {
-  try {
-    const habit = new Habit(req.body);
-    await habit.save();
-    res.status(201).json(habit);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+
+router.get('/habits', async function(req, res, next) {
+  const {title,description} = req.body;
+  const habit = new Habit({title,description});
+  await habit.save();
+  res.json(habit);
 });
 
-// Obtener todos los hábitos
-router.get("/habits", async (req, res) => {
-  const habits = await Habit.find();
-  res.json(habits);
-});
-
-// Actualizar un hábito
-router.put("/habits/:id", async (req, res) => {
-  try {
-    const habit = await Habit.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(habit);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Eliminar un hábito
-router.delete("/habits/:id", async (req, res) => {
-  await Habit.findByIdAndDelete(req.params.id);
-  res.json({ message: "Hábito eliminado" });
-});
 module.exports = router;
