@@ -2,11 +2,11 @@
 
 API para gestionar hábitos usando **Express.js**, **MongoDB Atlas** y **Mongoose**.
 
-## 📌 Requisitos
+## Requisitos
 - Node.js instalado
 - MongoDB Atlas configurado
 
-## 🚀 Instalación y ejecución
+## Instalación y ejecución
 1. Clonar el repositorio:
    ```bash
    git clone <repo-url>
